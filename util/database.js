@@ -9,20 +9,21 @@ const mongoConnect = callback => {
   )
     .then(client => {
       console.log('Connected!');
-      _db=client.db();
+      _db = client.db();
       callback();
     })
     .catch(err => {
       console.log(err);
+      throw err;
     });
 };
 
-const getDb=()=>{
+const getDb = () => {
   if (_db) {
-    return _db
+    return _db;
   }
-  throw 'No database found!'
-}
+  throw 'No database found!';
+};
 
-exports.mongoClient= mongoConnect;
-exports.getDb=getDb
+exports.mongoConnect = mongoConnect;
+exports.getDb = getDb;
